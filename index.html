@@ -4,9 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Coding Quiz Challenge</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    
+    <div class="container">
+
+        <div id="mainPage">
+            <h1>Coding Quiz Challenge</h1>
+            <h2>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</h2>
+        <button id="mainbtn">Start Quiz</button>
+        <button id="mainPageHighscores" onclick="showHighScore()">High Scores</button> 
+        </div>
+
+        <div id="quiz">
+            <div id="timer">Time left: </div>
+            <div id="Q"><p>questions</p></div>
+            <button id="a" onclick="checkAnswer('a')">A</button>
+            <button id="b" onclick="checkAnswer('a')">B</button>
+            <button id="c" onclick="checkAnswer('a')">C</button>
+            <button id="d" onclick="checkAnswer('a')">D</button>
+            <div id="result"></div>
+        </div>
+
+        <div id="GameOver">
+
+            <div id ="finalScore"></div>
+            <input type="text" size = "40" placeholder="Enter your intials for highscore" name="initials" id="initials"/>
+            <button id="submitScore">Submit Score</button>
+        </div>
+        <div id=highScoreContainer>
+        <div id="highScore-Page">
+            <div id="highScore-Header">
+                <h3>Player initials</h3>
+                <h3>Player score</h3>
+            </div>
+            <div id = "highScore-Initials"></div>
+            <div id = "highScore-Score"></div>
+        </div>
+        <div id = "endGameBtn">
+            <button id="playAgain" onclick="replayQuiz()">Play Again</button>
+            <button id="clearHighScore" onclick="clearScore()">Clear HighScores</button>
+        </div>    
+        </div>
+        <script src="script.js":></script>
+    </div>
 </body>
 </html>
