@@ -18,6 +18,45 @@ var submitScoreBtn = document.getElementById("submitScore");
 var resultsEl = document.getElementById("Q");
 var finalScoreEl = document.getElementById("finalScore");
 
+// quiz questions
+var quizQuestions = [{
+    question: "Commonly used data types DO NOT Include:",
+    choiceA: "Strings",
+    choiceB: "Booleans",
+    choiceC: "Alerts",
+    choiceD: "Numbers",
+    correctAnswer: "c"},
+    {
+     question: "The condition in an if / else statement is enclosed with _________.",
+     choiceA: "Quotes",
+     choiceB: "Curly Brackets",
+     choiceC: "Parenthesis",
+     choiceD: "Square Brackets",
+     correctAnswer: "b"},
+     {
+     question: "Arrays in JavaScript can be used to store __________.",
+     choiceA: "Numbers and Strings",
+     choiceB: "Other Arrays",
+     choiceC: "Booleans",
+     choiceD: "All Of The Above",
+     correctAnswer: "d"},
+     {
+     question: "String values must be enclosed within ______ when being assinged to variables.",
+     choiceA: "Commas",
+     choiceB: "Curly Brackets",
+     choiceC: "Quotes",
+     choiceD: "Parenthesis",
+     correctAnswer: "c"},
+     {
+     question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+     choiceA: "JavaScript",
+     choiceB: "Terminal/Bash",
+     choiceC: "For Loops",
+     choiceD: "Console Log",
+     correctAnswer: "d" 
+     }
+    ];
+
 
 
 
