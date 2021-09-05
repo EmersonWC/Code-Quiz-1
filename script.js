@@ -108,19 +108,31 @@ function showScore(){
 
 // when we click the submit button, we run the highscore function that stores and stringifies the high score array that's already saved in local storage
 // we also are pushing the new user name and score into the array we are saving within local storage.
-function generateHighscores(){
-    highScoreDisplayName.innerHTML = "";
-    highScoreDisplayScore.innerHTML = "";
-    var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
-    for (i=0; i<highscores.length; i++){
-        var newNameSpan = document.createElement("li");
-        var newScoreSpan = document.createElement("li");
-        newNameSpan.textContent=highscores[i].name;
-        newScoreSpan.textContent = highscores[i].score;
-        highScoreDisplayName.appendChild(newNameSpan);
-        highScoreDisplayScore.appendChild(newScoreSpan);
-    } 
-}
+submitScoreBtn.addEventListener("click", function highscore(){
+
+    if(highScoreInputName.value === "") {
+        alert("Initials cannot be empty");
+        return false;
+    }else{
+        var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+        var currentUser = highScoreInputName.value.trim();
+        var currentHighscore = {
+            name : currentUser,
+            score: score
+        };
+
+        GameOverDiv.style.display = "none";
+        highScoreContainer.style.display = "flex";
+        highScoreDiv.style.display = "block";
+        endGameBtns.style.display = "flex";
+
+        savedHighscores.push(currentHighscore);
+        localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
+        generateHighscores();
+    }
+});
+
+
 
 
 
