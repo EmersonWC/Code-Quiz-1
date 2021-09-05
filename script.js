@@ -167,7 +167,17 @@ function clearScore(){
     highScoreDisplayScore.textContent = "";
 }
 
-// 
+// resets quiz and takes user to main page 
+function replayQuiz(){
+    highScoreContainer.style.display = "none";
+    GameOverDiv.style.display = "none";
+    startQuizDiv.style.display = "flex";
+    timeLeft = 76;
+    score = 0;
+    currentQuestionIndex = 0;
+}
+
+//
 
 
 
