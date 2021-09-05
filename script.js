@@ -108,15 +108,15 @@ function showScore(){
 
 // when we click the submit button, we run the highscore function that stores and stringifies the high score array that's already saved in local storage
 // we also are pushing the new user name and score into the array we are saving within local storage.
-submitScoreBtn.addEventListener("click", function highscore(){
+submitScoreBtn.addEventListener("click", function highScore(){
 
     if(highScoreInputName.value === "") {
         alert("Initials cannot be empty");
         return false;
     }else{
-        var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+        var savedHighScores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
         var currentUser = highScoreInputName.value.trim();
-        var currentHighscore = {
+        var currentHighScore = {
             name : currentUser,
             score: score
         };
@@ -126,28 +126,49 @@ submitScoreBtn.addEventListener("click", function highscore(){
         highScoreDiv.style.display = "block";
         endGameBtns.style.display = "flex";
 
-        savedHighscores.push(currentHighscore);
-        localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
+        savedHighScores.push(currentHighScore);
+        localStorage.setItem("savedHighScores", JSON.stringify(savedHighScores));
         generateHighscores();
     }
 });
 
 // This function clears the list for the high scores and generates a new high score list from local storage
-function generateHighscores(){
+function generateHighScores(){
     highScoreDisplayName.innerHTML = "";
     highScoreDisplayScore.innerHTML = "";
-    var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
-    for (i=0; i<highscores.length; i++){
+    var highScores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
+    for (i=0; i<highScores.length; i++){
         var newNameSpan = document.createElement("li");
         var newScoreSpan = document.createElement("li");
-        newNameSpan.textContent = highscores[i].name;
-        newScoreSpan.textContent = highscores[i].score;
+        newNameSpan.textContent = highScores[i].name;
+        newScoreSpan.textContent = highScores[i].score;
         highScoreDisplayName.appendChild(newNameSpan);
         highScoreDisplayScore.appendChild(newScoreSpan);
     }
 }
 
-//
+// shows highScores
+function showHighScore (){
+    startQuizDiv.style.display = "none"
+    GameOverDiv.style.display = "none";
+    highScoreContainer.style.display = "flex";
+    highScoreDiv.style.display = "block";
+    endGameBtn.style.display = "flex";
+
+    generateHighScores();
+}
+
+// deletes highscores from local storage
+// delete highscores from score board
+
+function clearScore(){
+    window.localStorage.clear();
+    highScoreDisplayName.textContent = "";
+    highScoreDisplayScore.textContent = "";
+}
+
+// 
+
 
 
 
