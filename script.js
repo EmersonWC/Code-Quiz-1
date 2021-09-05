@@ -57,8 +57,70 @@ var quizQuestions = [{
      }
     ];
 
+    var finalQuestionIndex = quizQuestions.length;
+    var currentQuestionIndex = 0;
+    var timeLeft = 76;
+    var timerInterval;
+    var score = 0;
+    var correct;
 
+// This function cycles through the objecy array containing the quiz questions to generate the questions and answers.
+function generateQuizQuestion(){
+    GameOverDiv.style.display = "none";
+    if (currentQuestionIndex === finalQuestionIndex){
+        return showScore();
+    }
+    var currentQuestion = quizQuestions[currentQuestionIndex];
+    questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
+    buttonA.innerHTML = currentQuestion.choiceA;
+    buttonB.innerHTML = currentQuestion.choiceB;
+    buttonC.innerHTML = currentQuestion.choiceC;
+    buttonD.innerHTML = currentQuestion.choiceD;
+};
 
+// start quiz function starts timer, hides the buttton itself and shows the first question.
+function startQuiz(){
+    GameOverDiv.style.display = "none";
+    startQuizDiv.style.display = "none";
+    generateQuizQuestion();
+
+    //Timer
+    timerInterval = setInterval(function() {
+        timeLeft--;
+        quizTimer.textContent = "Time left: " + timeLeft;
+
+        if(timeLeft === 0) {
+            clearInterval(timerInterval);
+            showScore();
+        }
+    },1000);
+    quizBody.style.display = "block";
+}
+
+// end page screen after finishing quiz or running out of time
+function showScore(){
+    quizBody.style.display = "none"
+    GameOverDiv.style.display = "flex";
+    clearInterval(timerInterval);
+    highScoreInputName.value = "";
+    finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
+}
+
+// when we click the submit button, we run the highscore function that stores and stringifies the high score array that's already saved in local storage
+// we also are pushing the new user name and score into the array we are saving within local storage.
+function generateHighscores(){
+    highScoreDisplayName.innerHTML = "";
+    highScoreDisplayScore.innerHTML = "";
+    var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+    for (i=0; i<highscores.length; i++){
+        var newNameSpan = document.createElement("li");
+        var newScoreSpan = document.createElement("li");
+        newNameSpan.textContent=highscores[i].name;
+        newScoreSpan.textContent = highscores[i].score;
+        highScoreDisplayName.appendChild(newNameSpan);
+        highScoreDisplayScore.appendChild(newScoreSpan);
+    } 
+}
 
 
 
